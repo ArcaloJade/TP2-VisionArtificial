@@ -1,0 +1,4 @@
+Alto: 69cm (8 filas)
+Ancho: 95cm (11 columnas)
+Tamaño del marker externo: 8,7cm
+Tamaño del marker interno: 6,5cm
