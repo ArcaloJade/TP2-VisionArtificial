@@ -1,3 +1,5 @@
+import open3d as o3d
+
 def export_ply_grayscale(archivo_ply, depth_map, img_gray, f, cx, cy):
     """
     Exporta el mapa de profundidad y la imagen en escala de grises a un archivo .PLY.
@@ -40,3 +42,12 @@ def export_ply_grayscale(archivo_ply, depth_map, img_gray, f, cx, cy):
                 f_out.write(f'{X} {Y} {Z} {r} {g} {b}\n')
 
     print(f'Archivo .PLY guardado como {archivo_ply}')
+
+def draw_geometries(geometries, note=False, **kwargs):
+ 
+    if note:
+        draw_function = o3d.visualization.draw_plotly
+    else:
+        draw_function = o3d.visualization.draw_geometries
+
+    draw_function(geometries, **kwargs)
