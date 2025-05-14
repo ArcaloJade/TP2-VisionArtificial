@@ -1,1 +1,2 @@
-testing/buddha_0.ply
+datasets/buddha_board/clouds/buddha_*.ply
+datasets/buddha_board/cropped_clouds/buddha_*_crop.ply
