@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import glob
+import cv2.aruco as aruco
 
 
 def draw_checkerboard(
@@ -237,3 +238,24 @@ if __name__ == "__main__":
     #
     # print(mint.round())
     # print(mint2.round())
+
+def detect_charuco_board(image, board, aruco_dict, criteria=None):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Detectar marcadores ArUco
+    corners, ids, _ = aruco.detectMarkers(gray, aruco_dict)
+
+    if ids is not None and len(ids) > 0:
+        # Refinar detección de esquinas Charuco
+        if criteria is None:
+            criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+        retval, charuco_corners, charuco_ids = aruco.interpolateCornersCharuco(
+            corners,
+            ids,
+            gray,
+            board,
+            criteria=criteria
+        )
+        if retval > 0:
+            return True, charuco_corners, charuco_ids
+    return False, None, None
